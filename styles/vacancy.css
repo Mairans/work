@@ -1,0 +1,44 @@
+.vacancy {
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 16px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.vacancy__img {
+    margin-bottom: 12px;
+    max-height: 44px;
+}
+
+.vacancy__company {
+    font-size: 20px;
+    line-height: 24px;
+    color: rgba(23, 23, 23, 1);
+}
+
+.vacancy__title {
+    background-color: rgba(234, 236, 255, 1);
+    padding: 3px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 16.8px;
+    display: inline-block;
+}
+
+.vacancy__company,
+.vacancy__title {
+    margin-bottom: 8px;
+}
+
+.vacancy__fields {
+    color: rgba(204, 204, 204, 1);
+    font-size: 14px;
+    line-height: 16.8px;
+}
+
+@media (max-width: 940px) {
+    .cards {
+        width: 100%;
+    }
+}

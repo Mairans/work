@@ -1,0 +1,36 @@
+.modal {
+    position: fixed;
+    z-index: 10;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    padding: 30px;
+    overflow-y: auto;
+    display: flex;
+}
+
+.modal__main {
+    position: relative;
+    margin: auto;
+    cursor: default;
+}
+
+.modal__close {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    outline: 1px solid transparent;
+}
+
+.modal__close:focus {
+    outline-color: gray;
+}
+
+@media (max-width: 640px) {
+    .modal {
+        padding: 30px 15px;
+    }
+}

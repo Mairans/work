@@ -1,0 +1,14 @@
+@import "./styles/normalize.css";
+@import './styles/style.css';
+@import './styles/header.css';
+@import './styles/hero.css';
+@import './styles/vacancies.css';
+@import './styles/choices.min.css';
+@import './styles/choices.css';
+@import './styles/filter.css';
+@import './styles/checkbox.css';
+@import './styles/cards.css';
+@import './styles/vacancy.css';
+@import './styles/modal.css';
+@import './styles/detail.css';
+@import './styles/footer.css';
