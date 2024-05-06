@@ -1,12 +1,9 @@
-import {
-    API_URL,
-    LOCATION_URL,
-    VACANCY_URL,
-} from './constants.js'
+import { API_URL, LOCATION_URL, VACANCY_URL, } from './constants.js'
+
+const cardsList = document.querySelector('.cards__list');
 
 let lastUrl = '';
 let pagination = {};
-const cardsList = document.querySelector('.cards__list');
 
 const createCard = vacancy => `
 <article class="vacancy" tabindex="0" data-id="${vacancy.id}">
@@ -156,14 +153,47 @@ const observer = new IntersectionObserver((entries) => {
     }
 );
 
+
+const openFilter = (btn, dropDown, classNameBtn, classNameDrop) => {
+    dropDown.style.height = `${dropDown.scrollHeight}px`
+    btn.classList.add(classNameBtn)
+    dropDown.classList.add(classNameDrop)
+
+}
+
+const closeFilter = (btn, dropDown, classNameBtn, classNameDrop) => {
+    btn.classList.remove(classNameBtn)
+    dropDown.classList.remove(classNameDrop)
+    dropDown.style.height = '';
+}
+
 export const init = () => {
     const filterForm = document.querySelector('.filter__form');
-    const cardsList = document.querySelector('.cards__list');
+    const vacanciesFilterBtn = document.querySelector('.vacancies__filter-btn');
+    const vacanciesFilter = document.querySelector('.vacancies__filter');
+
+    // open filter 
+    vacanciesFilterBtn.addEventListener('click', () => {
+        if (vacanciesFilterBtn.classList.contains('vacancies__filter-btn_active')) {
+            closeFilter(vacanciesFilterBtn, vacanciesFilter, 'vacancies__filter-btn_active', 'vacancies__filter-active')
+        } else {
+            openFilter(vacanciesFilterBtn, vacanciesFilter, 'vacancies__filter-btn_active', 'vacancies__filter-active')
+        }
+    })
+
+    window.addEventListener('resize', () => {
+        if (vacanciesFilterBtn.classList.contains('vacancies__filter-btn_active')) {
+            // vacanciesFilter.style.height = `${vacanciesFilter.scrollHeight}px`;
+            closeFilter(vacanciesFilterBtn, vacanciesFilter, 'vacancies__filter-btn_active', 'vacancies__filter-active')
+        }
+    })
+
     // Select city
     const city = document.getElementById('city');
     const choices = new Choices(city, {
         itemSelectText: '',
     });
+
 
     getData(`${API_URL}${LOCATION_URL}`,
         (locationData) => {
@@ -187,9 +217,17 @@ export const init = () => {
     });
 
     cardsList.addEventListener('click', ({ target }) => {
-        const vacancycard = target.closest(".vacancy");
+        const vacancyCard = target.closest(".vacancy");
         if (vacancycard) {
-            const vacancyId = vacancycard.dataset.id;
+            const vacancyId = vacancyCard.dataset.id;
+            openModal(vacancyId);
+        }
+    })
+
+    cardsList.addEventListener('keydown', ({ code, target }) => {
+        const vacancyCard = target.closest(".vacancy");
+        if (code === "Enter" && target.closest('.vacancy')) {
+            const vacancyId = vacancyCard.dataset.id;
             openModal(vacancyId);
         }
     })

@@ -89,11 +89,6 @@ fieldset {
 @media (max-width: 940px) {
     .container {
         max-width: 680px;
-    }
-}
-
-@media (max-width: 650px) {
-    .container {
         padding: 15px;
     }
 }
