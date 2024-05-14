@@ -3,7 +3,7 @@ import { API_URL, LOCATION_URL, VACANCY_URL, } from './constants.js'
 const cardsList = document.querySelector('.cards__list');
 
 let lastUrl = '';
-let pagination = {};
+let pagination = {};    
 
 const createCard = vacancy => `
 <article class="vacancy" tabindex="0" data-id="${vacancy.id}">
@@ -153,7 +153,6 @@ const observer = new IntersectionObserver((entries) => {
     }
 );
 
-
 const openFilter = (btn, dropDown, classNameBtn, classNameDrop) => {
     dropDown.style.height = `${dropDown.scrollHeight}px`
     btn.classList.add(classNameBtn)
@@ -218,7 +217,7 @@ export const init = () => {
 
     cardsList.addEventListener('click', ({ target }) => {
         const vacancyCard = target.closest(".vacancy");
-        if (vacancycard) {
+        if (vacancyCard) {
             const vacancyId = vacancyCard.dataset.id;
             openModal(vacancyId);
         }
